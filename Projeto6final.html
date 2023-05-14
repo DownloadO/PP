@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>PET PLACE</title>
+  <style>
+    #botao-nao {
+      display: inline-block;
+      position: absolute;
+      padding: 10px 20px;
+      background-color: #FF0000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      vertical-align: middle;
+      left: calc(50% + 50px);
+      width: 100px;
+      top: 50px; /* adicionado */
+    }
+    #botao-sim {
+      display: inline-block;
+      position: absolute;
+      padding: 10px 20px;
+      background-color: #008000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      vertical-align: middle;
+      right: calc(50% + 50px);
+      width: 100px;
+      top: 50px; /* adicionado */
+    }
+    body {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    #area {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+      outline: none;
+    }
+    #mensagem-sim {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div id="area">
+    <button id="botao-sim">Sim</button>
+    <button id="botao-nao">Não</button>
+    <h2>Victoria, quer sair comigo?</h2>
+    <div id="mensagem-sim">Já que escolheu sim, quando podemos sair? 😂</div>
+  </div>
+  <audio id="audio"></audio>
+  <script>
+    var botaoNao = document.getElementById("botao-nao");
+    var botaoSim = document.getElementById("botao-sim");
+    var area = document.getElementById("area");
+    var larguraArea = area.offsetWidth;
+    var alturaArea = area.offsetHeight;
+    var audio = document.getElementById("audio");
+    var mensagemSim = document.getElementById("mensagem-sim");
+    botaoNao.addEventListener("mouseover", function() {
+      var novaPosicaoX = Math.floor(Math.random() * larguraArea);
+      var novaPosicaoY = Math.floor(Math.random() * alturaArea);
+      botaoNao.style.left = novaPosicaoX + "px";
+      botaoNao.style.top = novaPosicaoY + "px";
+    });
+    var reproduzindo = false;
+    botaoSim.addEventListener("click", function() {
+      if (!reproduzindo) {
+        audio.play();
+        reproduzindo = true;
+        mensagemSim.style.display = "block";
+        document.getElementById("gif").style.display = "block";
+      } else {
+        audio.pause();
+        reproduzindo = false;
+        mensagemSim.style.display = "none";
+        document.getElementById("gif").style.display = "none";
+      }
+    });
+  </script>
+  <div id="gif" style="display: none; position: absolute; top: 
